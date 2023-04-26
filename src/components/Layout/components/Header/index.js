@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
   faMagnifyingGlass,
+  faSignIn,
   // faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless'; // different import path!
@@ -65,13 +66,6 @@ function Header() {
         <div className={cx('actions')}>
           <Button text>Upload</Button>
           <Button primary>Login</Button>
-          <Button rounded>Login</Button>
-          <Button outline rounded>
-            Login
-          </Button>
-          <Button rounded className={cx('custom-login')}>
-            Login
-          </Button>
         </div>
       </div>
     </header>
