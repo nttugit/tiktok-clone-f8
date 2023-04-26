@@ -25,6 +25,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -39,11 +54,25 @@ const MENU_ITEMS = [
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
+
   useEffect(() => {
     setTimeout(() => {
       setSearchResult(['vtv24h', 'vanhleg', 'ronaldo']);
     }, 0);
   }, []);
+
+  // Handle logic
+  const handleMenuChange = (menuItem) => {
+    switch (menuItem.type) {
+      case 'languages':
+        console.log('language changed to', menuItem.title);
+        // Handle language changes
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -90,7 +119,7 @@ function Header() {
           {/* Login */}
           <Button primary>Login</Button>
           {/* More actions */}
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
