@@ -25,8 +25,6 @@ function Menu({ children, items = [], onChange = defaultFunc }) {
           onClick={() => {
             if (isParent) {
               setHistory((prev) => {
-                // console.log(prev);
-                // console.log([...prev, item.children]);
                 return [...prev, item.children];
               });
             } else {
@@ -40,10 +38,10 @@ function Menu({ children, items = [], onChange = defaultFunc }) {
 
   return (
     <Tippy
-      visible
       placement="bottom-end"
       interactive
       delay={[0, 700]}
+      offset={[12, 8]}
       render={(attrs) => (
         <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
           <PopperWrapper className={cx('menu-popper')}>
@@ -59,6 +57,7 @@ function Menu({ children, items = [], onChange = defaultFunc }) {
           </PopperWrapper>
         </div>
       )}
+      onHidden={() => setHistory((prev) => prev.slice(0, 1))}
     >
       {children}
     </Tippy>
